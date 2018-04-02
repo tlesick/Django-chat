@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <h3>Chatroom</h3>
+    <h5>Login</h5>
+    <form action="/user/login" method="POST">
+        {% csrf_token %}
+        <label for="username">Username</label>    
+        <input type="text" name="username">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+    <div>
+        <p>Not logged in?</p>
+        <button><a href="/user/registration">Register</a></button>
+    </div>
+
+    {% if messages %}
+    <ul >
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
